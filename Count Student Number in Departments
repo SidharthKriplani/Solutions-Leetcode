@@ -1,0 +1,12 @@
+MYSQL:
+
+WITH c1 AS
+(SELECT s.student_id, s.student_name, s.gender, s.dept_id, d.dept_name
+FROM Department d 
+LEFT JOIN Student s 
+ON s.dept_id = d.dept_id)
+
+SELECT dept_name, COUNT(student_id) student_number
+FROM c1 
+GROUP BY 1
+ORDER BY 2 DESC, dept_name
