@@ -1,0 +1,19 @@
+(half the solution is mine, half from chatgpt, but good problem, althouggh some test cases didn't go through, but that's not the problem for live interviews)
+
+https://leetcode.com/problems/shortest-completing-word/
+
+class Solution:
+    def shortestCompletingWord(self, licensePlate: str, words: List[str]) -> str:
+        cnt = 0
+        words_dic = {}
+        for w in words:
+            for x in w:
+                if x in licensePlate.lower():
+                    cnt+=1
+            words_dic[w] = cnt
+            cnt = 0
+
+        max_value = max(words_dic.values())
+        shortest_word = [word for word in words_dic if words_dic[word]==max_value]
+
+        return min(shortest_word, key = len)
