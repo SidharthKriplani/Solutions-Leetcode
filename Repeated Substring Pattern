@@ -1,0 +1,7 @@
+(chatgpt's solution below, though quite interesting, I was trying a brute force appoach first that didn't work as expected )
+
+https://leetcode.com/problems/repeated-substring-pattern/
+
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        return s in (s + s)[1:-1]
