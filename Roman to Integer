@@ -1,0 +1,46 @@
+https://leetcode.com/problems/roman-to-integer/description/
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+
+        def roman_dict(sym):
+            roman_symbols = ['I', 'V', 'X', 'L', 'C', 'D', 'M']
+            roman_values = [1, 5, 10, 50, 100, 500, 1000]
+
+            roman_dict = {}
+            for rs in range(len(roman_symbols)):
+                roman_dict[roman_symbols[rs]] = roman_values[rs] 
+            
+            return roman_dict[sym]
+
+        res = 0
+
+        for i in range(len(s)):
+            if i > 0 and roman_dict(s[i-1]) < roman_dict(s[i]):
+                res += roman_dict(s[i]) - 2 * roman_dict(s[i-1])
+            else:
+                res += roman_dict(s[i])
+
+        return res
+
+
+(though a better solution is given below)
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        m = {
+            'I' : 1,
+            'V' : 5,
+            'X' : 10,
+            'L' : 50,
+            'C' : 100,
+            'D' : 500,
+            'M' : 1000
+        }
+        ans = 0
+        for i in range(len(s)):
+            if i < len(s) -1 and m[s[i]] < m[s[i+1]]:
+                ans -= m[s[i]]
+            else:
+                ans += m[s[i]]
+        return ans
