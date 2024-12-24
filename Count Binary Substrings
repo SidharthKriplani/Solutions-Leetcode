@@ -1,0 +1,28 @@
+(it is generating all the possible substrings and then checking them, thus two passes, and possibly there can be a solution in a single pass as well, which is difficult)
+
+https://leetcode.com/problems/count-binary-substrings/description/
+
+class Solution:
+    def countBinarySubstrings(self, s: str) -> int:
+        def variations(s):
+            var_lis = []
+            for i in range(0, len(s)):
+                for j in range(i+1, len(s), 2):
+                    var_lis.append(s[i:j+1])
+            return var_lis
+            
+        def validity_check(elem):
+            mid = len(elem)//2
+            if elem[:mid] == "0"*mid and elem[mid:]=="1"*mid:
+                return True 
+            elif elem[:mid] == "1"*mid and elem[mid:]=="0"*mid:
+                return True
+            else:
+                return False 
+
+        cnt = 0
+        for i in variations(s):
+            if validity_check(i):
+                cnt = cnt+1
+
+        return cnt        
