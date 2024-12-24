@@ -1,0 +1,22 @@
+(took almost an hour to solve this problem, but no chatpgt help this time, feels quite good lol)
+
+https://leetcode.com/problems/shortest-distance-to-a-character/
+
+class Solution:
+    def shortestToChar(self, s: str, c: str) -> List[int]:
+        e_index_l = []
+        while c in s:
+            e_index = s.index(c)  
+            e_index_l.append(e_index)
+            s = s[:e_index] + '-' + s[e_index + 1:]
+            
+        out_l = []
+        temp_l = []
+        for i in range(len(s)):
+            for j in e_index_l:
+                temp_l.append(abs(i-j))
+                
+            out_l.append(min(temp_l))
+            temp_l = []
+            
+        return out_l
