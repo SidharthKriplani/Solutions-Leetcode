@@ -1,0 +1,31 @@
+(this is chatgpt's efficient solution agan, for any input size)
+
+def convert_to_title(n):
+    result = []
+    while n > 0:
+        n -= 1
+        result.append(chr(n % 26 + ord('A')))
+        n //= 26
+
+    return ''.join(result[::-1])
+
+https://leetcode.com/problems/excel-sheet-column-title/submissions/1486226188/
+
+
+(and this is my solution but just for input size < 703)
+
+class Solution:
+    def convertToTitle(self, columnNumber: int) -> str:
+        letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+
+        dic = {}
+        for i in range(len(letters)):
+            dic[numbers[i]]=letters[i]
+        if columnNumber < 27:
+            return dic[columnNumber].upper()
+
+        elif columnNumber >26 and columnNumber < 703 and columnNumber%26!=0:
+            return dic[int((columnNumber - columnNumber%26)/26)].upper()+dic[columnNumber%26].upper()
+        elif columnNumber >26 and columnNumber < 703 and columnNumber%26==0:
+            return dic[(columnNumber - 26)/26].upper()+'Z'
