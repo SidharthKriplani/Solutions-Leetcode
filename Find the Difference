@@ -1,0 +1,24 @@
+(acceptable solution for live interviews, but was not passing all the test cases when tried to submit the solution, again asked chatgpt for help, solution given below)
+
+https://leetcode.com/problems/find-the-difference/
+
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        if len([i for i in s if i not in t]) > 0:
+            return [i for i in s if i not in t][0]
+        elif len([i for i in t if i not in s]) > 0:
+            return [i for i in t if i not in s][0]
+        else:
+            if set(s)==set(t):
+                return list(set(s))[0]
+
+chatgpt's solution (interesting one)
+
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        result = 0
+        for char in s:
+            result ^= ord(char)
+        for char in t:
+            result ^= ord(char)
+        return chr(result)
