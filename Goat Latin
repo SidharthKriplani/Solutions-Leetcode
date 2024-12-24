@@ -1,0 +1,20 @@
+(this solution was working, just failed one test case very trivially, didn't bother to bulletproof it, but no chatgpt help again, was pretty easy)
+
+https://leetcode.com/problems/goat-latin/
+
+class Solution:
+    def toGoatLatin(self, sentence: str) -> str:
+        out_l = []
+        sentence = sentence.split(' ')
+
+        def is_vowel(char):
+            vowels = 'aeiouAEIOU'
+            return char in vowels
+            
+        for i in range(len(sentence)):
+            if is_vowel(sentence[i][0]):
+                out_l.append(sentence[i]+'ma'+'a'*(sentence.index(sentence[i])+1))
+            if not is_vowel(sentence[i][0]):
+                out_l.append(sentence[i][1:]+sentence[i][0]+'ma'+'a'*(sentence.index(sentence[i])+1))
+            
+        return ' '.join(out_l)
