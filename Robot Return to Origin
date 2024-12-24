@@ -1,0 +1,8 @@
+(attempted the solution, got the concept right but chatgpt solution was much simplier and easier to understand, and below is that solution)
+
+https://leetcode.com/problems/robot-return-to-origin/
+
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+        moves = moves.lower()
+        return moves.count('u') == moves.count('d') and moves.count('r') == moves.count('l')
