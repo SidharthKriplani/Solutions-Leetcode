@@ -1,0 +1,27 @@
+(used chatgpt to write the simple list comprehension code so I can generate all possible substrings from a given string, otherwise solution is mine, though it is failing with "memory limit exceeded" (obviously) for huge test cases)
+
+https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if s == '':
+            return 0
+        else:
+            combinations = [s[i:j+1] for i in range(len(s)) for j in range(i, len(s))]
+            return len(max([i for i in combinations if len(i) == len(set(i))], key = len))
+
+chatgpt's solution (very simple and easy to understand):
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        max_length = 0
+        n = len(s)
+        
+        for i in range(n):
+            for j in range(i + 1, n + 1):
+                if len(set(s[i:j])) == len(s[i:j]):
+                    max_length = max(max_length, j - i)
+                else:
+                    break  
+                    
+        return max_length
