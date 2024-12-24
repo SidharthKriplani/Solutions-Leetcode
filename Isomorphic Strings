@@ -1,0 +1,12 @@
+(very rudimentary solution, won't work for harder test cases, but I guess working logic is good enough for live interviews)
+
+https://leetcode.com/problems/isomorphic-strings/
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        s = s.lower()
+        t = t.lower()
+
+        dic = dict(zip(s, t))
+
+        return len(dic.keys()) == len(set(s)) and len(dic.values()) == len(set(t))
