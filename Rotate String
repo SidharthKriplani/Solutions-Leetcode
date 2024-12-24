@@ -1,0 +1,17 @@
+https://leetcode.com/problems/rotate-string/description/
+
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        def rotate_string(s, goal, rotations=0):
+            if s == goal:
+                return True
+
+            if rotations == len(s):
+                return False
+                
+            rotated = s[1:] + s[0]
+            
+            return rotate_string(rotated, goal, rotations + 1)
+            
+        result = rotate_string(s, goal)
+        return result
