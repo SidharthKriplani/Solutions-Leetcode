@@ -1,0 +1,9 @@
+https://leetcode.com/problems/license-key-formatting/
+
+class Solution:
+    def licenseKeyFormatting(self, s: str, k: int) -> str:
+        s = ''.join([i for i in s if i!='-'])[::-1]
+        output = []
+        for i in range(0, len(s), k):
+            output.append(s[i:i+k])
+        return '-'.join([i[::-1].upper() for i in output[::-1]])
