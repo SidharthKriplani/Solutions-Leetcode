@@ -1,0 +1,22 @@
+https://leetcode.com/problems/word-pattern/
+
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        words = s.split(" ")
+
+        if len(pattern) != len(words):
+            return False 
+
+        wordmap = {}
+        patternmap = {}
+
+        for w,p in zip(words,pattern):
+            if w in wordmap and wordmap[w]!=p:
+                return False 
+
+            if p in patternmap and patternmap[p]!=w:
+                return False
+            wordmap[w] = p
+            patternmap[p] = w
+
+        return True
