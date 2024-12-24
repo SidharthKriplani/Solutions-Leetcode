@@ -1,0 +1,47 @@
+https://leetcode.com/problems/longest-common-prefix/
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+
+        def prefixes_generate(char):
+            return [char[0:j].lower() for j in range(1, len(char)+1)]
+            
+
+        def comparing_prefixes(strs):
+            strs.sort(key = len)
+            main_prefixes = prefixes_generate(strs[0])
+            other_prefixes = []
+            for s in strs[1:]:
+                for i in prefixes_generate(s):
+                    other_prefixes.append(i)
+            
+            curr_sub = ''
+            max_len = 0
+            curr_len = 0
+            
+            for i in main_prefixes:
+                if other_prefixes.count(i)==len(strs)-1:
+                    curr_sub = i
+                    curr_len = len(i)
+                    max_len = max(curr_len, max_len)
+            
+            if curr_sub:
+                return curr_sub
+            else:
+                return ""
+
+        return comparing_prefixes(strs)
+
+
+(though a neater solution is give below)
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        comm_word_1 = ''
+        for i in range(len(strs[0])):
+            if strs[0][i:] in strs[1]:
+                comm_word_1 = strs[0][i:]
+            elif strs[0][:len(strs[0])-i] in strs[1]:
+                comm_word_1 = strs[0][:len(strs[0])-i]
+
+        return comm_word_1
