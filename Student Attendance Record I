@@ -1,0 +1,28 @@
+https://leetcode.com/problems/student-attendance-record-i/
+
+class Solution:
+    def checkRecord(self, s: str) -> bool:
+        absence_count = s.count('A')
+
+        current_count = 0
+        max_count = 0
+
+        for char in s:
+            if char == 'L':
+                current_count = current_count + 1
+                max_count = max(max_count, current_count)
+            else:
+                current_count = 0
+                
+        late_count = max_count
+        
+        if absence_count < 2 and late_count < 3:
+            return True
+        else:
+            return False
+
+(though a much neater solution is given below)
+
+class Solution:
+    def checkRecord(self, s: str) -> bool:
+        return 'LLL' not in s and s.count('A')<2
