@@ -22,3 +22,10 @@ class Solution:
         for char in t:
             result ^= ord(char)
         return chr(result)
+
+(another working solution for live interviews but which will fail a test case like 'a' and 'aa'):
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        for i in t:
+            if i not in list(s):
+                return i
